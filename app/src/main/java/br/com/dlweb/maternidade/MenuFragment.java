@@ -1,5 +1,6 @@
 package br.com.dlweb.maternidade;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -43,6 +44,22 @@ public class MenuFragment extends Fragment {
             case R.id.menu_bebe:
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameMain, new br.com.dlweb.maternidade.bebe.MainFragment()).commit();
                 break;
+            case R.id.menu_camera:
+                Intent camera = new Intent(getActivity(), CameraActivity.class);
+                startActivity(camera);
+                break;
+            case R.id.menu_sensor:
+                Intent sensor = new Intent(getActivity(), SensorActivity.class);
+                startActivity(sensor);
+                break;
+            case R.id.menu_compartilhar:
+                //Android ShareSheet
+                Intent content = new Intent();
+                content.setAction(Intent.ACTION_SEND);
+                content.putExtra(Intent.EXTRA_TEXT, "Olá, mundo!");
+                content.setType("text/plain");
+                Intent share = Intent.createChooser(content, null);
+                startActivity(share);
         }
         return super.onOptionsItemSelected(item);
     }
